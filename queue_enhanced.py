@@ -119,6 +119,9 @@ class QueueClient:
                         logger.error(f'{name} encountered an error: {e}')
                         self._remove_from_queue(name)
                         raise
+                
+                # If we exit the retry loop without success, raise an error
+                raise RuntimeError(f'Task {name} failed after {max_retries} retries')
 
             return wrapper
         return decorator
