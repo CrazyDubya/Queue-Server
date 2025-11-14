@@ -17,7 +17,7 @@ def queue_decorator(name):
                 response = requests.get(f'{QUEUE_SERVER_URL}/queue/{name}')
                 position = response.json()['position']
                 print(f'{name} is at position {position} in the queue.')
-
+            
             # It's this function's turn
             print(f'{name} is now running.')
 
@@ -25,7 +25,7 @@ def queue_decorator(name):
 
             # Notify the server that this function has completed
             requests.post(f'{QUEUE_SERVER_URL}/queue/next')
-
+            
             return result
         return wrapper
     return decorator
