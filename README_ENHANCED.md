@@ -21,13 +21,52 @@ A lightweight, Python-first task queue management system designed for simplicity
 pip install -r requirements.txt
 ```
 
-### 2. Run Server
+### 2. Project Structure
 
-```bash
-python app/run.py
+The repository is organized as follows:
+
+```
+Queue-Server/
+├── app/                    # Server application
+│   ├── __init__.py
+│   ├── config.py
+│   ├── routes.py           # Basic routes
+│   ├── routes_enhanced.py  # Enhanced routes with features
+│   └── run.py              # Server entry point
+├── queue_enhanced.py       # Enhanced client library
+├── queue.py                # Basic client library
+├── tests/                  # Test suite
+├── requirements.txt
+├── Dockerfile
+└── docker-compose.yml
 ```
 
-### 3. Use in Your Code
+**Important**: To run tests or import modules, ensure the repository root is in your `PYTHONPATH`:
+
+```bash
+# Option 1: Set PYTHONPATH before running
+export PYTHONPATH=/path/to/Queue-Server:$PYTHONPATH
+pytest tests/
+
+# Option 2: Run from repository root
+cd /path/to/Queue-Server
+python -m pytest tests/
+
+# Option 3: Install in development mode
+pip install -e .
+```
+
+### 3. Run Server
+
+```bash
+# From the repository root
+python app/run.py
+
+# Or with explicit PYTHONPATH
+PYTHONPATH=. python app/run.py
+```
+
+### 4. Use in Your Code
 
 ```python
 from queue_enhanced import QueueClient

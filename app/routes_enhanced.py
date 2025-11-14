@@ -39,7 +39,11 @@ class PersistenceLayer:
         self.init_db()
 
     def init_db(self):
-        """Initialize SQLite database"""
+        """Initialize SQLite database
+        
+        Note: Table and column names are hardcoded constants and should never
+        come from user input to prevent SQL injection vulnerabilities.
+        """
         try:
             conn = sqlite3.connect(self.db_path)
             cursor = conn.cursor()
